@@ -1,4 +1,7 @@
 package com.webservice.test.restfulWebserviceTesting.Model;
+/**
+@author sabin
+*/
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
