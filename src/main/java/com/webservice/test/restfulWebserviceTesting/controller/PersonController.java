@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.webservice.test.restfulWebserviceTesting.Model.Person;
+import com.webservice.test.restfulWebserviceTesting.exception.CustomException;
 import com.webservice.test.restfulWebserviceTesting.response.Response;
 import com.webservice.test.restfulWebserviceTesting.service.PersonService;
 
@@ -47,19 +48,19 @@ public class PersonController {
 	}
 
 	@RequestMapping(value = "person/{id}", method = RequestMethod.GET)
-	public ResponseEntity<Person> getPersonById(@PathVariable("id") long id) {
+	public ResponseEntity<Person> getPersonById(@PathVariable("id") long id) throws CustomException {
 		Person person = personService.getPersonById(id);
 		if (person == null) {
-			logger.info("Person with provided address not found");
+			throw new CustomException("Person with provided id:" + id + " not found");
 		}
 		return new ResponseEntity<Person>(person, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "person/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<Response> removePersonById(@PathVariable("id") long id) {
+	public ResponseEntity<Response> removePersonById(@PathVariable("id") long id) throws CustomException {
 		Person person = personService.getPersonById(id);
 		if (person == null) {
-			logger.info("Person with provided address not found");
+			throw new CustomException("Person with provided id:" + id + " cannot be deleted");
 		}
 		personService.removePerson(person);
 		logger.info("Person deleted successfully");
@@ -75,12 +76,12 @@ public class PersonController {
 	}
 
 	@RequestMapping(value = "addPerson", method = RequestMethod.PUT)
-	public ResponseEntity<Person> updatePerson(@Valid @RequestBody Person person) {
+	public ResponseEntity<Person> updatePerson(@Valid @RequestBody Person person) throws CustomException {
 		Person tempPerson = personService.getPersonById(person.getId());
 		if (tempPerson == null) {
-			logger.info("Person with provided address not found");
+			throw new CustomException("Person with provided id:" + person.getId() + "cannot be updated");
 		}
-		logger.info("Person with provided id" + tempPerson.getId() + "updated");
+		logger.info("Person with provided id" + tempPerson.getId() + " updated");
 		return new ResponseEntity<Person>(personService.savePerson(person), HttpStatus.OK);
 	}
 
