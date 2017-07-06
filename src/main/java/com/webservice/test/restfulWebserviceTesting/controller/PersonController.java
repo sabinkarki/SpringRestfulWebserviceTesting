@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.webservice.test.restfulWebserviceTesting.Model.Person;
 import com.webservice.test.restfulWebserviceTesting.exception.CustomException;
+import com.webservice.test.restfulWebserviceTesting.model.Person;
 import com.webservice.test.restfulWebserviceTesting.response.Response;
 import com.webservice.test.restfulWebserviceTesting.service.PersonService;
 

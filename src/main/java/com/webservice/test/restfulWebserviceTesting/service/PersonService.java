@@ -5,7 +5,7 @@ package com.webservice.test.restfulWebserviceTesting.service;
 
 import java.util.List;
 
-import com.webservice.test.restfulWebserviceTesting.Model.Person;
+import com.webservice.test.restfulWebserviceTesting.model.Person;
 
 public interface PersonService {
 

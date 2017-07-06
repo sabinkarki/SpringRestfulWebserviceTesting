@@ -11,8 +11,8 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.webservice.test.restfulWebserviceTesting.Model.Person;
-import com.webservice.test.restfulWebserviceTesting.Repository.PersonRepository;
+import com.webservice.test.restfulWebserviceTesting.model.Person;
+import com.webservice.test.restfulWebserviceTesting.repository.PersonRepository;
 import com.webservice.test.restfulWebserviceTesting.service.PersonService;
 
 @Service
