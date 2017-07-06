@@ -15,7 +15,7 @@ public class Person {
 	@GeneratedValue
 	private long id;
 	private String name;
-	private boolean position;
+	private String position;
 
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "id")
@@ -24,7 +24,7 @@ public class Person {
 	public Person() {
 	}
 
-	public Person(String name, boolean position, Address address) {
+	public Person(String name, String position, Address address) {
 		super();
 		this.name = name;
 		this.position = position;
@@ -47,11 +47,11 @@ public class Person {
 		this.name = name;
 	}
 
-	public boolean isPosition() {
+	public String getPosition() {
 		return position;
 	}
 
-	public void setPosition(boolean position) {
+	public void setPosition(String position) {
 		this.position = position;
 	}
 
