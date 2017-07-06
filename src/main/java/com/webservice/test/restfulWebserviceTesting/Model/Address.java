@@ -6,7 +6,7 @@ import javax.persistence.Id;
 
 @Entity
 public class Address {
-	
+
 	@Id
 	@GeneratedValue
 	private long id;
@@ -14,6 +14,16 @@ public class Address {
 	private String aptNo;
 	private String cityState;
 	private String zip;
+
+	public Address() {
+	}
+
+	public Address(String street, String aptNo, String cityState, String zip) {
+		this.street = street;
+		this.aptNo = aptNo;
+		this.cityState = cityState;
+		this.zip = zip;
+	}
 
 	public long getId() {
 		return id;
@@ -49,6 +59,12 @@ public class Address {
 
 	public String getZip() {
 		return zip;
+	}
+
+	@Override
+	public String toString() {
+		return "Address [id=" + id + ", street=" + street + ", aptNo=" + aptNo + ", cityState=" + cityState + ", zip="
+				+ zip + "]";
 	}
 
 	public void setZip(String zip) {
