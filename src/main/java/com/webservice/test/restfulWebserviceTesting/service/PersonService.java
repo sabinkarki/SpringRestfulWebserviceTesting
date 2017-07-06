@@ -17,6 +17,4 @@ public interface PersonService {
 
 	public void removePerson(Person person);
 
-	public Person updatePerson(Person person);
-
 }

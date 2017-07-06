@@ -43,15 +43,4 @@ public class PersonServiceImpl implements PersonService {
 
 	}
 
-	@Override
-	public Person updatePerson(Person person) {
-		Person personTemp = personRepository.findOne(person.getId());
-		if (personTemp != null) {
-			personTemp.setAddress(person.getAddress());
-			personTemp.setName(person.getName());
-			personTemp.setPosition(person.getPosition());
-			return personRepository.save(personTemp);
-		}
-		return null;
-	}
 }
