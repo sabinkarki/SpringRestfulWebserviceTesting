@@ -11,12 +11,16 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 @Entity
 public class Person {
 
 	@Id
 	@GeneratedValue
 	private long id;
+
+	@NotEmpty(message = "Name should not be Empty")
 	private String name;
 	private String position;
 

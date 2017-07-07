@@ -12,6 +12,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -69,14 +71,14 @@ public class PersonController {
 	}
 
 	@RequestMapping(value = "addPerson", method = RequestMethod.POST)
-	public ResponseEntity<Person> addPerson(@Valid @RequestBody Person person) {
+	public ResponseEntity<Person> addPerson(@Validated @RequestBody Person person) {
 		Person tempPerson = personService.savePerson(person);
 		logger.info("Person added in the database");
 		return new ResponseEntity<Person>(tempPerson, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "addPerson", method = RequestMethod.PUT)
-	public ResponseEntity<Person> updatePerson(@Valid @RequestBody Person person) throws CustomException {
+	public ResponseEntity<Person> updatePerson(@Validated @RequestBody Person person) throws CustomException {
 		Person tempPerson = personService.getPersonById(person.getId());
 		if (tempPerson == null) {
 			throw new CustomException("Person with provided id:" + person.getId() + "cannot be updated");

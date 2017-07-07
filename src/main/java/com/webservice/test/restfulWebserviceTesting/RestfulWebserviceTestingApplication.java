@@ -19,12 +19,13 @@ public class RestfulWebserviceTestingApplication {
 	private static final Logger logger = LoggerFactory.getLogger(RestfulWebserviceTestingApplication.class);
 
 	public static void main(String[] args) {
+	
 		SpringApplication.run(RestfulWebserviceTestingApplication.class, args);
 	}
 
 	/*
 	 * When you want to execute some piece of code exactly before the
-	 * application startup completes, you can use it then
+	 * application startup completes, We can use it
 	 */
 	@Bean
 	public CommandLineRunner setUp(PersonRepository personRepository) {

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 public class Response {
 	private int value;
 	private String message;
+	
 
 	public Response() {
 	}
@@ -32,5 +33,7 @@ public class Response {
 	public void setMessage(String message) {
 		this.message = message;
 	}
+
+	
 
 }
