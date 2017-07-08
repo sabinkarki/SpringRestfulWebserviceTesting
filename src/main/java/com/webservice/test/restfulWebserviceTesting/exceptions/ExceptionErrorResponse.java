@@ -1,4 +1,4 @@
-package com.webservice.test.restfulWebserviceTesting.exception;
+package com.webservice.test.restfulWebserviceTesting.exceptions;
 
 import java.util.ArrayList;
 import java.util.List;

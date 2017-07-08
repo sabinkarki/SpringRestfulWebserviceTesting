@@ -1,7 +1,7 @@
 /**
  @author sabin
  */
-package com.webservice.test.restfulWebserviceTesting.exception;
+package com.webservice.test.restfulWebserviceTesting.exceptions;
 
 //When controller throws CustomException it first call this class and then only @ControllerAdvice is called
 public class CustomException extends Exception {

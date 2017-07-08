@@ -1,4 +1,4 @@
-package com.webservice.test.restfulWebserviceTesting.repository;
+package com.webservice.test.restfulWebserviceTesting.repositories;
 
 /**
 @author sabin
@@ -6,7 +6,7 @@ package com.webservice.test.restfulWebserviceTesting.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.webservice.test.restfulWebserviceTesting.model.Person;
+import com.webservice.test.restfulWebserviceTesting.models.Person;
 
 @Repository
 public interface PersonRepository extends JpaRepository<Person, Long> {

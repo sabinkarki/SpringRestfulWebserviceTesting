@@ -1,4 +1,4 @@
-package com.webservice.test.restfulWebserviceTesting.model;
+package com.webservice.test.restfulWebserviceTesting.models;
 /**
 @author sabin
 */

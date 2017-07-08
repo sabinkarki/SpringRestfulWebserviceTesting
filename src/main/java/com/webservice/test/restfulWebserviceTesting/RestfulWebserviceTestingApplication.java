@@ -10,9 +10,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import com.webservice.test.restfulWebserviceTesting.model.Address;
-import com.webservice.test.restfulWebserviceTesting.model.Person;
-import com.webservice.test.restfulWebserviceTesting.repository.PersonRepository;
+import com.webservice.test.restfulWebserviceTesting.models.Address;
+import com.webservice.test.restfulWebserviceTesting.models.Person;
+import com.webservice.test.restfulWebserviceTesting.repositories.PersonRepository;
 
 @SpringBootApplication
 public class RestfulWebserviceTestingApplication {

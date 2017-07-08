@@ -1,4 +1,4 @@
-package com.webservice.test.restfulWebserviceTesting.service.serviceImpl;
+package com.webservice.test.restfulWebserviceTesting.service.serviceImpls;
 
 /**
 @author sabin
@@ -11,9 +11,9 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.webservice.test.restfulWebserviceTesting.model.Person;
-import com.webservice.test.restfulWebserviceTesting.repository.PersonRepository;
-import com.webservice.test.restfulWebserviceTesting.service.PersonService;
+import com.webservice.test.restfulWebserviceTesting.models.Person;
+import com.webservice.test.restfulWebserviceTesting.repositories.PersonRepository;
+import com.webservice.test.restfulWebserviceTesting.services.PersonService;
 
 @Service
 @Transactional

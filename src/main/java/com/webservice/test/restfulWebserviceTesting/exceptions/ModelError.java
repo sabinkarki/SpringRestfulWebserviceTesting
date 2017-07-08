@@ -1,4 +1,4 @@
-package com.webservice.test.restfulWebserviceTesting.exception;
+package com.webservice.test.restfulWebserviceTesting.exceptions;
 
 public class ModelError {
 	private String message;

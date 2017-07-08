@@ -1,4 +1,4 @@
-package com.webservice.test.restfulWebserviceTesting.response;
+package com.webservice.test.restfulWebserviceTesting.responses;
 
 import org.springframework.stereotype.Component;
 

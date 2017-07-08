@@ -1,29 +1,27 @@
 /**
  * 
  */
-package com.webservice.test.restfulWebserviceTesting.controller;
+package com.webservice.test.restfulWebserviceTesting.controllers;
 
 import java.util.List;
-
-import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.webservice.test.restfulWebserviceTesting.exception.CustomException;
-import com.webservice.test.restfulWebserviceTesting.model.Person;
-import com.webservice.test.restfulWebserviceTesting.response.Response;
-import com.webservice.test.restfulWebserviceTesting.service.PersonService;
+import com.webservice.test.restfulWebserviceTesting.exceptions.CustomException;
+import com.webservice.test.restfulWebserviceTesting.models.Person;
+import com.webservice.test.restfulWebserviceTesting.responses.Response;
+import com.webservice.test.restfulWebserviceTesting.services.PersonService;
 
 /**
  * @author sabin
@@ -37,19 +35,19 @@ public class PersonController {
 	@Autowired
 	private PersonService personService;
 
-	@RequestMapping(value = "/")
+	@GetMapping(value="/")
 	public String getHome() {
 		return "My name is Sabin Karki";
 	}
 
-	@RequestMapping(value = "/persons", method = RequestMethod.GET)
+	@RequestMapping(value = "api/persons", method = RequestMethod.GET)
 	public ResponseEntity<List<Person>> getAllPerson() {
 		logger.info("All persons listed");
 		List<Person> persons = personService.getAllPerson();
 		return new ResponseEntity<List<Person>>(persons, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "person/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "api/person/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Person> getPersonById(@PathVariable("id") long id) throws CustomException {
 		Person person = personService.getPersonById(id);
 		if (person == null) {
@@ -58,7 +56,7 @@ public class PersonController {
 		return new ResponseEntity<Person>(person, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "person/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "api/secure/person/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Response> removePersonById(@PathVariable("id") long id) throws CustomException {
 		Person person = personService.getPersonById(id);
 		if (person == null) {
@@ -70,14 +68,14 @@ public class PersonController {
 		return new ResponseEntity<Response>(response, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "addPerson", method = RequestMethod.POST)
+	@RequestMapping(value = "api/secure/addPerson", method = RequestMethod.POST)
 	public ResponseEntity<Person> addPerson(@Validated @RequestBody Person person) {
 		Person tempPerson = personService.savePerson(person);
 		logger.info("Person added in the database");
 		return new ResponseEntity<Person>(tempPerson, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "addPerson", method = RequestMethod.PUT)
+	@RequestMapping(value = "api/secure/addPerson", method = RequestMethod.PUT)
 	public ResponseEntity<Person> updatePerson(@Validated @RequestBody Person person) throws CustomException {
 		Person tempPerson = personService.getPersonById(person.getId());
 		if (tempPerson == null) {

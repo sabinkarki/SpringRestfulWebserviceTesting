@@ -1,11 +1,11 @@
-package com.webservice.test.restfulWebserviceTesting.service;
+package com.webservice.test.restfulWebserviceTesting.services;
 /**
 @author sabin
 */
 
 import java.util.List;
 
-import com.webservice.test.restfulWebserviceTesting.model.Person;
+import com.webservice.test.restfulWebserviceTesting.models.Person;
 
 public interface PersonService {
 
