@@ -3,16 +3,17 @@ package com.webservice.test.restfulWebserviceTesting.configs;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.MessageSourceAccessor;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.context.support.ResourceBundleMessageSource;
 
 @Configuration
-public class RestfulWebServiceTestingApplicationConfig {
+public class MessageSourceConfig {
 
 	@Bean
-	public ResourceBundleMessageSource messageSource() {
-		ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
+	public ReloadableResourceBundleMessageSource messageSource() {
+		ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
 		// messageSource.setDefaultEncoding("UTF-8");
-		// messageSource.setBasenames("classpath:errMsg");
+		messageSource.setBasenames("classpath:messages");
 		return messageSource;
 	}
 

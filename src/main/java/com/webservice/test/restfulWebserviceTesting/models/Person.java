@@ -20,7 +20,7 @@ public class Person {
 	@GeneratedValue
 	private long id;
 
-	@NotEmpty(message = "Name should not be Empty")
+	@NotEmpty
 	private String name;
 	private String position;
 
