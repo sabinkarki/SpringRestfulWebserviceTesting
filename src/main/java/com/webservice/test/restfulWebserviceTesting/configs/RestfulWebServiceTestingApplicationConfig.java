@@ -11,9 +11,8 @@ public class RestfulWebServiceTestingApplicationConfig {
 	@Bean
 	public ResourceBundleMessageSource messageSource() {
 		ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
-		// messageSource.setBasename("errMsg");
 		// messageSource.setDefaultEncoding("UTF-8");
-		messageSource.setBasenames("classpath:errMsg"); 
+		// messageSource.setBasenames("classpath:errMsg");
 		return messageSource;
 	}
 

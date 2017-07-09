@@ -23,32 +23,36 @@ import com.webservice.test.restfulWebserviceTesting.models.Person;
 import com.webservice.test.restfulWebserviceTesting.responses.Response;
 import com.webservice.test.restfulWebserviceTesting.services.PersonService;
 
+import io.swagger.annotations.ApiParam;
+
 /**
  * @author sabin
  *
  */
 
 @RestController
+@RequestMapping(value = "/api")
 public class PersonController {
 	private static final Logger logger = LoggerFactory.getLogger(PersonController.class);
 
 	@Autowired
 	private PersonService personService;
 
-	@GetMapping(value="/")
+	@GetMapping(value = "/")
 	public String getHome() {
 		return "My name is Sabin Karki";
 	}
 
-	@RequestMapping(value = "api/persons", method = RequestMethod.GET)
+	@RequestMapping(value = "persons", method = RequestMethod.GET)
 	public ResponseEntity<List<Person>> getAllPerson() {
 		logger.info("All persons listed");
 		List<Person> persons = personService.getAllPerson();
 		return new ResponseEntity<List<Person>>(persons, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "api/person/{id}", method = RequestMethod.GET)
-	public ResponseEntity<Person> getPersonById(@PathVariable("id") long id) throws CustomException {
+	@RequestMapping(value = "persons/{id}", method = RequestMethod.GET)
+	public ResponseEntity<Person> getPersonById(
+			@ApiParam(value = "Id of person", required = true) @PathVariable("id") long id) throws CustomException {
 		Person person = personService.getPersonById(id);
 		if (person == null) {
 			throw new CustomException("Person with provided id:" + id + " not found");
@@ -56,8 +60,10 @@ public class PersonController {
 		return new ResponseEntity<Person>(person, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "api/secure/person/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<Response> removePersonById(@PathVariable("id") long id) throws CustomException {
+	@RequestMapping(value = "persons/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<Response> removePersonById(
+			@ApiParam(value = "Id of person to be deleted", required = true) @PathVariable("id") long id)
+			throws CustomException {
 		Person person = personService.getPersonById(id);
 		if (person == null) {
 			throw new CustomException("Person with provided id:" + id + " cannot be deleted");
@@ -65,18 +71,21 @@ public class PersonController {
 		personService.removePerson(person);
 		logger.info("Person deleted successfully");
 		Response response = new Response(HttpStatus.OK.value(), "Person has been deleted");
-		return new ResponseEntity<Response>(response, HttpStatus.OK);
+		return new ResponseEntity<Response>(response, HttpStatus.NO_CONTENT);
 	}
 
-	@RequestMapping(value = "api/secure/addPerson", method = RequestMethod.POST)
-	public ResponseEntity<Person> addPerson(@Validated @RequestBody Person person) {
+	@RequestMapping(value = "addPerson", method = RequestMethod.POST)
+	public ResponseEntity<Person> addPerson(
+			@ApiParam(value = "Request Body for Person", required = true) @Validated @RequestBody Person person) {
 		Person tempPerson = personService.savePerson(person);
 		logger.info("Person added in the database");
-		return new ResponseEntity<Person>(tempPerson, HttpStatus.OK);
+		return new ResponseEntity<Person>(tempPerson, HttpStatus.CREATED);
 	}
 
-	@RequestMapping(value = "api/secure/addPerson", method = RequestMethod.PUT)
-	public ResponseEntity<Person> updatePerson(@Validated @RequestBody Person person) throws CustomException {
+	@RequestMapping(value = "addPerson", method = RequestMethod.PUT)
+	public ResponseEntity<Person> updatePerson(
+			@ApiParam(value = "Request Body for Person", required = true) @Validated @RequestBody Person person)
+			throws CustomException {
 		Person tempPerson = personService.getPersonById(person.getId());
 		if (tempPerson == null) {
 			throw new CustomException("Person with provided id:" + person.getId() + "cannot be updated");

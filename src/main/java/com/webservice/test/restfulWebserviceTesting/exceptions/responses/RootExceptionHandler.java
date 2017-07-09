@@ -1,4 +1,4 @@
-package com.webservice.test.restfulWebserviceTesting.exceptions;
+package com.webservice.test.restfulWebserviceTesting.exceptions.responses;
 
 import java.util.List;
 
@@ -14,11 +14,19 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import com.webservice.test.restfulWebserviceTesting.exceptions.CustomException;
+import com.webservice.test.restfulWebserviceTesting.exceptions.ModelError;
+import com.webservice.test.restfulWebserviceTesting.exceptions.ValidationErrorRespose;
+import com.webservice.test.restfulWebserviceTesting.models.references.ErrorReference;
+
 @ControllerAdvice
 public class RootExceptionHandler {
 
 	@Autowired
 	private MessageSourceAccessor messageSourceAccessor;
+
+	@Autowired
+	private ErrorReference errorReference;
 
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public ResponseEntity<ValidationErrorRespose> handleErrors(MethodArgumentNotValidException exception) {
@@ -26,7 +34,7 @@ public class RootExceptionHandler {
 		ValidationErrorRespose errResponse = new ValidationErrorRespose();
 		errResponse.setErrorCode(422);
 		errResponse.setErrorType("Validation Error");
-		errResponse.setMessage("Some of fields are invalid");
+		errResponse.setMessage(errorReference.getDescription().get("EXC400"));
 		fieldErrors.forEach(fieldError -> {
 			ModelError error = new ModelError(fieldError.getField(), messageSourceAccessor.getMessage(fieldError));
 			errResponse.addError(error);

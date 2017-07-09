@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+import com.webservice.test.restfulWebserviceTesting.exceptions.responses.ExceptionErrorResponse;
+
 @Component
 public class ValidationErrorRespose extends ExceptionErrorResponse {
 	private String errorType;
